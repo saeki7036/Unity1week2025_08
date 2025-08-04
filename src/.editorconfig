@@ -1,0 +1,14 @@
+# エディター設定のルートであることを明示
+root = true
+
+# C# ファイルに対する共通設定
+[*.cs]
+
+# UTF-8（BOMなし）で保存
+charset = utf-8
+end_of_line = crlf
+
+# 最終行に改行を挿入
+insert_final_newline = true
+indent_style = space
+indent_size = 4
