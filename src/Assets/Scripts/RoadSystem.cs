@@ -13,7 +13,7 @@ public class RoadSystem : MonoBehaviour
     float DownMove = 0.002f;
 
     [SerializeField]
-    float approach_Y = 5f;
+    float Approach_Y = -2f;
 
     [SerializeField]
     float FadeOut_Y = -8f;
@@ -52,8 +52,8 @@ public class RoadSystem : MonoBehaviour
             {
                 Transform roadTransform = RoadValue[i].GetTransform();
                 MoveTransForm(roadTransform, UpMove);
-                Debug.Log(roadTransform.position);
-                if(roadTransform.position.y > approach_Y)
+                //Debug.Log(roadTransform.position);
+                if(roadTransform.position.y > Approach_Y)
                 {
                     RoadValue[i].SetLayerFront();
                 }
