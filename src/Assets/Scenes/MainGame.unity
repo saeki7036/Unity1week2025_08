@@ -1471,8 +1471,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UpMove: 0.02
   DownMove: 0.02
-  AddScaleValue: 0.002
-  ScaleUpMax: 0.6
+  AddScaleValue: 0.01
+  ScaleUpMax: 1.5
   Approach_Y: 1
   FadeOut_Y: -8
 --- !u!114 &1265915260

@@ -100,7 +100,7 @@ MonoBehaviour:
   ResetPos_Y: 0.5
   StartScaleUp_Y: 1
   ScaleUpMax: {x: 2, y: 0.8}
-  ScaleAddValue: {x: 0.004, y: 0.002}
+  ScaleAddValue: {x: 0.005, y: 0.002}
   TransPos_Y: -3.5
   TransScale: {x: 0.1, y: 0.1, z: 1}
   MoveSpeed: 0.05
