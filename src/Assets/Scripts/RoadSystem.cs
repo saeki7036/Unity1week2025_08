@@ -13,6 +13,12 @@ public class RoadSystem : MonoBehaviour
     float DownMove = 0.002f;
 
     [SerializeField]
+    float AddScaleValue = 0.002f;
+
+    [SerializeField]
+    float ScaleUpMax = 0.6f;
+
+    [SerializeField]
     float Approach_Y = -2f;
 
     [SerializeField]
@@ -40,7 +46,9 @@ public class RoadSystem : MonoBehaviour
             if (RoadValue[i].IsLayerFlont())
             {
                 Transform roadTransform = RoadValue[i].GetTransform();
+
                 MoveTransForm(roadTransform, -DownMove);
+                ScaleTransForm(roadTransform);
 
                 if (roadTransform.position.y < FadeOut_Y)
                 {
@@ -71,5 +79,17 @@ public class RoadSystem : MonoBehaviour
             z = pos.z
         };
         transform.position = pos;
+    }
+
+    void ScaleTransForm(Transform transform)
+    {
+        Vector3 scale = transform.localScale;
+        scale = new Vector3()
+        {
+            x = Mathf.Min(scale.x + AddScaleValue, ScaleUpMax),
+            y = Mathf.Min(scale.x + AddScaleValue, ScaleUpMax),
+            z = 1
+        };
+        transform.localScale = scale;
     }
 }
