@@ -4,16 +4,16 @@ using UnityEngine;
 public class RoadObjectGeneretor : MonoBehaviour
 {
     [SerializeField]
+    string GeneretObjectName;
+
+    [SerializeField]
     RoadSystem roadSystem;
 
     [SerializeField]
-    GameObject HumanObject;
+    GameObject GeneretObject;
 
     [SerializeField]
-    GameObject CarObject;
-
-    [SerializeField]
-    float SpawnPosmin_X = -10, SpawnPosmax_X = 10;
+    float SpawnRandomPosMin = -10, SpawnRandomPosMax = 10;
 
     [SerializeField]
     float SpawnPos_Y = -5f;
@@ -22,14 +22,10 @@ public class RoadObjectGeneretor : MonoBehaviour
     float timeCountValue = 0.02f;
 
     [SerializeField]
-    float timelimit_Car = 5f;
+    float GeneretTime = 5f;
+    
     [SerializeField]
-    float timelimit_Human = 2f;
-
-    [SerializeField]
-    float timeCount_Car = -100f;
-
-    float timeCount_Human = 0;
+    float timeCounter = -100f;
 
     // Start is called before the first frame update
     void Start()
@@ -44,31 +40,25 @@ public class RoadObjectGeneretor : MonoBehaviour
         if (roadSystem == null)
             return;
 
-        timeCount_Car += timeCountValue;
-        timeCount_Human += timeCountValue;
+        timeCounter += timeCountValue;
         
-        if(timeCount_Car > timelimit_Car)
+        if(timeCounter > GeneretTime)
         {
-            timeCount_Car = 0;
-            CreateObject(CarObject);
-        }
-        if (timeCount_Human > timelimit_Human)
-        {
-            timeCount_Human = 0;
-            CreateObject(HumanObject);
+            timeCounter = 0;
+            ObjectGeneret();
         }
     }
 
-    void CreateObject(GameObject gameobject)
+    void ObjectGeneret()
     {
         Vector3 pos = new()
         {
-            x = UnityEngine.Random.Range(SpawnPosmin_X, SpawnPosmax_X),
+            x = UnityEngine.Random.Range(SpawnRandomPosMin, SpawnRandomPosMax),
             y = SpawnPos_Y,
             z = 0,
         };
 
-        GameObject SpawnObject = Instantiate(gameobject, pos, Quaternion.identity);
+        GameObject SpawnObject = Instantiate(GeneretObject, pos, Quaternion.identity);
 
         var RoadBaseClass = SpawnObject.GetComponent<RoadObject>();
 
