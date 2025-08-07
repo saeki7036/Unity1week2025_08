@@ -1,8 +1,14 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:src/Assets/Scripts/Inputs.meta
 guid: b8103dddb21146b498125d3ba3193940
 folderAsset: yes
 DefaultImporter:
+========
+guid: d03ed43fc9d8a4f2e9fa70c1c7916eb9
+NativeFormatImporter:
+>>>>>>>> parent of 2179571 (Merge pull request #3 from saeki7036/SR_0807):src/Assets/Settings/Lit2DSceneTemplate.scenetemplate.meta
   externalObjects: {}
+  mainObjectFileID: 11400000
   userData: 
   assetBundleName: 
   assetBundleVariant: 
