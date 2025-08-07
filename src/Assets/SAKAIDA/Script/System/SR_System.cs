@@ -9,10 +9,13 @@ public class SR_System : MonoBehaviour
     SR_AudioManager audioManager => SR_AudioManager.instance;
     // Start is called before the first frame update
 
+    [SerializeField] AudioClip GameOverClip_Bomb;
+
     [SerializeField] AudioClip NingenKorosu_Clip;
     [SerializeField] Animator ShutterAnimator;
 
     [SerializeField] SR_ScoreManager scoreManager;
+    [SerializeField] GameObject ScoreBoard;
     [SerializeField] float GameStartTime = 0;
     float GameStartCount = 0;
 
@@ -62,24 +65,23 @@ public class SR_System : MonoBehaviour
     }
     void isGameStart() 
     {
-        /*
-        if (GameStartCount > GameStartTime)
-        {
-
-            GameStartCount = 0;
-            gameMode = GameMode.MainGame;
-
-        }
-        else 
-        {
-            GameStartCount += Time.deltaTime;
-        }*/
-
+      
+        scoreManager.isClearScoreText();
         ShutterAnimator.Play("開く",0,0);
         gameMode = GameMode.MainGame;
     }
     void isAfter() 
     {
+
+        audioManager.isPlaySE(GameOverClip_Bomb);
+
+        StartCoroutine(Shake(0.3f,0.8f));
+
+        scoreManager.SaveScore = scoreManager.AllScore;//スコア情報を念のため保存
+        scoreManager.AllScore = 0;//ゲームの合計スコア
+        ScoreBoard.SetActive(true);
+        
+
         ShutterAnimator.Play("閉じる", 0, 0);
         gameMode = GameMode.Before;
     }
@@ -88,6 +90,11 @@ public class SR_System : MonoBehaviour
     {
         StartCoroutine(Shake(0.1f,0.2f));
         audioManager.isPlaySE(NingenKorosu_Clip);
+    }
+
+    public void isGameOver() 
+    {
+        gameMode = GameMode.After;
     }
 
     public IEnumerator Shake(float duration, float magnitude)

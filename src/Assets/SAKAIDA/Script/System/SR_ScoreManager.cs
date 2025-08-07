@@ -9,12 +9,18 @@ public class SR_ScoreManager : MonoBehaviour
 
     [SerializeField] Animator ScoreAnimator;
     [SerializeField] TextMeshProUGUI ScoreText;
+    [SerializeField] TextMeshProUGUI MileageText;
+    [SerializeField] TextMeshProUGUI CoffeeBounusText;
+
     [SerializeField] AudioClip ScoreGetClip;
+
+
+
 
     SR_AudioManager audioManager => SR_AudioManager.instance;
 
     public float AllScore =0;
-
+    public float SaveScore = 0;
     void Start()
     {
         
@@ -28,11 +34,18 @@ public class SR_ScoreManager : MonoBehaviour
 
     public void isAddScore(float AddScore) 
     {
-
+        //スコアの初期化はSR_SystemのisAfterでしている。
         AllScore += AddScore;
         ScoreText.text = AllScore.ToString();
         ScoreAnimator.Play("加算", 0, 0);
 
         audioManager.isPlaySE(ScoreGetClip);
+    }
+    public void isClearScoreText()
+    {
+        
+        ScoreText.text = AllScore.ToString();
+        ScoreAnimator.Play("加算", 0, 0);
+
     }
 }
