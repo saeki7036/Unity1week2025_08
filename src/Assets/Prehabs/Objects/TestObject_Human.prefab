@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5964399242363013267}
   - component: {fileID: 7325012059894364405}
-  - component: {fileID: 5846192404823453475}
+  - component: {fileID: 7039779506445769397}
   m_Layer: 0
   m_Name: TestObject_Human
   m_TagString: Untagged
@@ -85,7 +85,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5846192404823453475
+--- !u!114 &7039779506445769397
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -94,7 +94,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1422497083490335869}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 88361567ba266a14e981d200ef3a6ffb, type: 3}
+  m_Script: {fileID: 11500000, guid: 8402df8ee6219f54d9a6a92cc94cc682, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 7325012059894364405}
+  SurprisedSprite: {fileID: 21300000, guid: 1e0673891caa22844bc1d2eec5ff2572, type: 3}
+  HitMoveSpeed: 10
+  RemoveSpeed: 15
+  HitRotateSpeed: -720
+  HitTime: 3

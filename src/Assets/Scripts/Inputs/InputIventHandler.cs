@@ -9,9 +9,12 @@ public class InputIventHandler : MonoBehaviour
 
     [SerializeField]
     HandleController handleController;
-    
+
+    [SerializeField]
+    CoffeePiccer coffeePiccer;
     void Start()
     {
         handleController.InputRegister(manager);
+        coffeePiccer.InputRegister(manager);
     }
 }
