@@ -14,7 +14,8 @@ public class SR_ScoreManager : MonoBehaviour
 
     [SerializeField] AudioClip ScoreGetClip;
 
-
+    
+    
 
 
     SR_AudioManager audioManager => SR_AudioManager.instance;

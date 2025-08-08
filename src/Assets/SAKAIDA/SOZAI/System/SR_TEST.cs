@@ -9,6 +9,7 @@ public class SR_TEST : MonoBehaviour
     SR_System system => SR_System.instance;
     [SerializeField] AudioClip Clip;
     [SerializeField] SR_ScoreManager scoreManager;
+    [SerializeField] SR_CoffeeController _CoffeeController;
     // Start is called before the first frame update
     void Start()
     {
@@ -35,6 +36,10 @@ public class SR_TEST : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.P))
         {
             scoreManager.isAddScore(10);
+        }
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            _CoffeeController.SpawnCoffeeBeans(gameObject);
         }
     }
 }
