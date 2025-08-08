@@ -39,7 +39,7 @@ public class SR_TEST : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.C))
         {
-            _CoffeeController.SpawnCoffeeBeans(gameObject);
+            _CoffeeController.SpawnCoffeeBeans(transform);
         }
     }
 }

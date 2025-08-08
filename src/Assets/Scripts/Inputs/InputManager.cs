@@ -4,13 +4,13 @@ using UnityEngine;
 public class InputManager : MonoBehaviour
 {
     public event Action<Vector3> LeftDownEvent;
-    public event Action<Vector3> RightDownEvent;
+    //public event Action<Vector3> RightDownEvent;
 
     public event Action<Vector3> LeftDlagEvent;
-    public event Action<Vector3> RightClickEvent;
+    //public event Action<Vector3> RightClickEvent;
 
     public event Action<Vector3> LeftUpEvent;
-    public event Action<Vector3> RightUpEvent;
+    //public event Action<Vector3> RightUpEvent;
 
     [SerializeField]
     float UIwidthMax = Screen.width;
