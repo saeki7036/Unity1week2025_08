@@ -2,29 +2,62 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BardHeadMovement : MonoBehaviour
 {
     [SerializeField]
-    RectTransform HeadRT;
+    RectTransform PointerRT;
 
     [SerializeField]
-    RectTransform[] NeckRTs;
+    Image HeadImage;
 
     [SerializeField]
-    RectTransform NeckAnchorRT;
+    Sprite OpenSprite;
+
+    [SerializeField]
+    Sprite CloseSprite;
+
+    [SerializeField]
+    float UIwidthMax = Screen.width;
+
+    [SerializeField]
+    float UIheightMax = Screen.height;
+
+    public void InputRegister(InputManager input)
+    {
+        input.LeftDownEvent += CloseMouth;
+        input.LeftUpEvent += OpenMouth;
+    }
+
+    void OnEnable()
+    {
+        UIwidthMax = Screen.width;
+        UIheightMax = Screen.height;
+    }
+
+    Vector3 GetTouchClamp()
+    {
+        Vector3 ClampPosition = Input.mousePosition;
+
+        ClampPosition.y = Mathf.Clamp(ClampPosition.y, 0, UIheightMax);
+        ClampPosition.x = Mathf.Clamp(ClampPosition.x, 0, UIwidthMax);
+
+        return ClampPosition;
+    }
 
     void FixedUpdate()
     {
-        Vector2 headPos = HeadRT.position;
+        PointerRT.position = GetTouchClamp();
+    }
 
-        for (int i = 0; i < NeckRTs.Count(); i++)
-        {
-            float t = (float)i / NeckRTs.Count();               // 0.0 ~ 1.0
+    void CloseMouth(Vector3 vector3)
+    {
+        HeadImage.sprite = CloseSprite;
+    }
 
-            Vector2 currentPos = Vector2.Lerp(NeckAnchorRT.position, headPos, t); // 等間隔の位置
-
-            NeckRTs[i].position = currentPos;
-        }
+    void OpenMouth(Vector3 vector3)
+    {
+        HeadImage.sprite = OpenSprite;
     }
 }

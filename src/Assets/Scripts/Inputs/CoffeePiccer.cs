@@ -13,6 +13,12 @@ public class CoffeePiccer : MonoBehaviour
     [SerializeField]
     float RemovePower = 20f;
 
+    [SerializeField]
+    SR_CoffeeController sr_CoffeeController;
+
+    [SerializeField]
+    int beenSpwanValue = 12;
+
     float MoveValueCounter = 0;
 
     Vector2 picVelocity;
@@ -49,6 +55,8 @@ public class CoffeePiccer : MonoBehaviour
 
             rb2D = picCoffeeBag.GetRB2D();
 
+            picCoffeeBag.PicBag();
+
             picVelocity = rb2D.velocity;
 
             rb2D.velocity = Vector2.zero;
@@ -78,8 +86,14 @@ public class CoffeePiccer : MonoBehaviour
 
             rb2D.AddForce(RemoveVelocity.normalized * RemovePower, ForceMode2D.Impulse);
 
+            picCoffeeBag.RereaceBag();
             picCoffeeBag.OpenBag();
 
+            for (int i = 0; i < beenSpwanValue; i++)
+            {
+                sr_CoffeeController.SpawnCoffeeBeans(picTransform);
+            }
+          
             ResetPic();
         }
     }
@@ -90,6 +104,7 @@ public class CoffeePiccer : MonoBehaviour
 
         rb2D.velocity = picVelocity;
 
+        picCoffeeBag.RereaceBag();
         ResetPic();
     }
 

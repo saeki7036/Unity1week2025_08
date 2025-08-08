@@ -25,9 +25,6 @@ public class CoffeeBagGeneretor : MonoBehaviour
     [SerializeField]
     float RandomTargetMax_Y = 4f;
 
-    List<Transform> CoffeeBagList;
-
-
     [HideInInspector]
     // インスタンス（シングルトン）
     public static CoffeeBagGeneretor Instance { get; private set; }
@@ -44,11 +41,6 @@ public class CoffeeBagGeneretor : MonoBehaviour
         {
             Destroy(gameObject);
         }
-    }
-
-    void Start()
-    {
-        CoffeeBagList = new List<Transform>();
     }
 
     // 外部から呼び出したい関数
@@ -68,14 +60,13 @@ public class CoffeeBagGeneretor : MonoBehaviour
 
         Vector2 target = new Vector2((IsLeft ? 1 : -1), UnityEngine.Random.Range(RandomTargetMin_Y, RandomTargetMax_Y));
 
-        rigidbody2D.AddForce(target.normalized,ForceMode2D.Impulse);
+        rigidbody2D.AddForce(target.normalized * UnityEngine.Random.Range(RandomPowerMin, RandomPowerMax), ForceMode2D.Impulse);
     }
 
     public Transform GetInSideTransform(Vector2 PicPos, float PicRadius)
     {
         for (int i = 0; i < transform.childCount; i++)
         {
-            //childrenList.Add(transform.GetChild(i));
             if (Vector2.Distance(transform.GetChild(i).position, PicPos) < PicRadius)
                 return transform.GetChild(i);
         }

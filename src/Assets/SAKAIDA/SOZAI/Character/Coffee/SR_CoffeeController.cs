@@ -12,6 +12,7 @@ public class SR_CoffeeController : MonoBehaviour
 
     [SerializeField] GameObject CoffeeBeansObject;
 
+    [SerializeField] Transform BeenTarget;
     SR_AudioManager audioManager => SR_AudioManager.instance;
     [SerializeField] AudioClip CoffeePop;
 
@@ -36,7 +37,7 @@ public class SR_CoffeeController : MonoBehaviour
              isDecreaseCoffee(_System.DecreaseCoffee);
         }
     }
-    public void SpawnCoffeeBeans(GameObject SpawnPointObject) //コーヒー豆を召喚する処理。指定したオブジェクトから発生する
+    public void SpawnCoffeeBeans(Transform SpawnPointObject) //コーヒー豆を召喚する処理。指定したオブジェクトから発生する
     {
         GameObject CL_CoffeeBeans =  Instantiate(CoffeeBeansObject, SpawnPointObject.transform.position, Quaternion.identity);
         SR_CoffeeBeans sR_CoffeeBeans = CL_CoffeeBeans.GetComponent<SR_CoffeeBeans>();
@@ -44,6 +45,10 @@ public class SR_CoffeeController : MonoBehaviour
         audioManager.isPlaySE(CoffeePop);
 
         sR_CoffeeBeans._CoffeeController = this;
+
+        if(BeenTarget != null)
+
+            sR_CoffeeBeans.SetTarget(BeenTarget);
     }
 
     public void isDecreaseCoffee(float DecreaseCoffee) 

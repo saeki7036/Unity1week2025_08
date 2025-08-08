@@ -93,7 +93,7 @@ public class SR_System : MonoBehaviour
 
     public void NINGEN_KOROSU() 
     {
-        StartCoroutine(Shake(0.1f,0.2f));
+        StartCoroutine(Shake(0.1f,0.5f));
         audioManager.isPlaySE(NingenKorosu_Clip);
     }
 

@@ -30,6 +30,8 @@ public class HumanObject : RoadObject
 
     protected override void HitAction()
     {
+        SR_System.instance.NINGEN_KOROSU();
+
         spriteRenderer.sprite = SurprisedSprite;
 
         AsyncStartHit();

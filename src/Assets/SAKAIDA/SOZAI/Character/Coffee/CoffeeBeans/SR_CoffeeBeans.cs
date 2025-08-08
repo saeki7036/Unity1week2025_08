@@ -24,6 +24,10 @@ public class SR_CoffeeBeans : MonoBehaviour
 
     float Count = 0;
 
+    Transform targetTransform;
+
+    public void  SetTarget(Transform tf) => targetTransform = tf;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -57,8 +61,11 @@ public class SR_CoffeeBeans : MonoBehaviour
         }
         if (Phase == 3) 
         {
-            Vector2 Direction = (Vector2)TarGetPos - (Vector2)transform.position;
-            float Distance = Vector2.Distance((Vector2)TarGetPos, (Vector2)transform.position);
+            Vector2 target = targetTransform == null ? TarGetPos : targetTransform.position;
+
+            Vector2 Direction = target - (Vector2)transform.position;
+
+            float Distance = Vector2.Distance(target, (Vector2)transform.position);
             rb.velocity = Direction.normalized * Speed;
 
             if (Distance < 1) 

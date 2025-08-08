@@ -12,9 +12,13 @@ public class InputIventHandler : MonoBehaviour
 
     [SerializeField]
     CoffeePiccer coffeePiccer;
+
+    [SerializeField]
+    BardHeadMovement bardHeadMovement;
     void Start()
     {
         handleController.InputRegister(manager);
         coffeePiccer.InputRegister(manager);
+        bardHeadMovement.InputRegister(manager);
     }
 }
