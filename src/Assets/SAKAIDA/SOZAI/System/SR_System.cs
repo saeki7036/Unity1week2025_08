@@ -19,6 +19,8 @@ public class SR_System : MonoBehaviour
     [SerializeField] float GameStartTime = 0;
     float GameStartCount = 0;
 
+    public float DecreaseCoffee = 1;//一秒の減少量
+
     public enum GameMode 
     { 
     
