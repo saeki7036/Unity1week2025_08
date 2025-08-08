@@ -12,6 +12,7 @@ public class SR_System : MonoBehaviour
     [SerializeField] AudioClip GameOverClip_Bomb;
 
     [SerializeField] AudioClip NingenKorosu_Clip;
+    [SerializeField] AudioClip GameStartClip;
     [SerializeField] Animator ShutterAnimator;
 
     [SerializeField] SR_ScoreManager scoreManager;
@@ -67,7 +68,9 @@ public class SR_System : MonoBehaviour
     }
     void isGameStart() 
     {
-      
+
+        audioManager.isPlaySE(GameStartClip);
+
         scoreManager.isClearScoreText();
         ShutterAnimator.Play("開く",0,0);
         gameMode = GameMode.MainGame;
