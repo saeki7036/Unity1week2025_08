@@ -212,7 +212,10 @@ public class SR_System : MonoBehaviour
     }
     public void TutorialNext() 
     {
-        T_Phase++;
+        if (T_Phase == 1)
+        {
+            T_Phase++;
+        }
     }
     public IEnumerator Shake(float duration, float magnitude)
     {

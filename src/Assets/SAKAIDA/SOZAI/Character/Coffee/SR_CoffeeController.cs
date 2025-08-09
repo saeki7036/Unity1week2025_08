@@ -9,6 +9,7 @@ public class SR_CoffeeController : MonoBehaviour
 
     [SerializeField] SR_System _System;
     [SerializeField] Slider CoffeeSlider;
+    [SerializeField] GameObject Canvas;
 
     [SerializeField] GameObject CoffeeBeansObject;
 
@@ -17,7 +18,15 @@ public class SR_CoffeeController : MonoBehaviour
     [SerializeField] float CoffeeMountainBody_Double =0.1f;
     SR_AudioManager audioManager => SR_AudioManager.instance;
     [SerializeField] AudioClip CoffeePop;
-
+    [Space]
+    [SerializeField] int MakeCoffee_Decrease_GetCoffeeBeans_namber = 5;
+    [SerializeField] float MakeCoffee_Increase_CoffeeWater = 10;
+    [SerializeField] AudioClip AddCoffeeClip;
+    [SerializeField] AudioClip AddCoffeeClip1;
+    [SerializeField] AudioClip NoCoffeeBeanseClip;
+    [SerializeField] GameObject CoffeeBeanse_TARINAI_TEXT;
+    [SerializeField] Vector2 TARINAI_SpawnPoint = Vector2.zero;
+    [Space]
     public int GetCoffeeBeans_namber=0;
     public float CoffeeWater = 0;
     public float MaxCoffeeWater = 100;
@@ -28,6 +37,27 @@ public class SR_CoffeeController : MonoBehaviour
     {
         CoffeeSlider.maxValue = MaxCoffeeWater;
         CoffeeSlider.minValue = 0;
+    }
+
+    public void MakeCoffeeWater() 
+    {
+        if (GetCoffeeBeans_namber >= MakeCoffee_Decrease_GetCoffeeBeans_namber)
+        {
+            audioManager.isPlaySE(AddCoffeeClip);
+            audioManager.isPlaySE(AddCoffeeClip1);
+            GetCoffeeBeans_namber -= MakeCoffee_Decrease_GetCoffeeBeans_namber;
+            CoffeeWater += MakeCoffee_Increase_CoffeeWater;
+        }
+        else 
+        {
+            audioManager.isPlaySE(NoCoffeeBeanseClip);
+
+            GameObject CL_CoffeeBeansTARINAI = Instantiate(CoffeeBeanse_TARINAI_TEXT);
+            CL_CoffeeBeansTARINAI.transform.parent = Canvas.transform;
+            RectTransform rectTransform = CL_CoffeeBeansTARINAI.GetComponent<RectTransform>();
+            rectTransform.position = TARINAI_SpawnPoint;
+            Destroy(CL_CoffeeBeansTARINAI, 1);
+        }
     }
 
     // Update is called once per frame
