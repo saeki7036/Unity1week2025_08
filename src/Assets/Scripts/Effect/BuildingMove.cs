@@ -33,9 +33,13 @@ public class BuildingMove : MonoBehaviour
     [SerializeField]
     float TransScale_Y = 0f;
 
+    SR_System system => SR_System.instance;
+
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (system.IsMainGamePlay() == false) return;
+
         transform.position += new Vector3(MoveSpeed_X, MoveSpeed_Y, 0);
 
         float scale = Mathf.Min(transform.localScale.y + ScaleAdd_Y, ScaleMax_Y);

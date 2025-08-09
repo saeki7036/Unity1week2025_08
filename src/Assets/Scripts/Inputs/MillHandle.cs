@@ -15,6 +15,9 @@ public class MillHandle : MonoBehaviour
     RectTransform[] RectPoints;
 
     [SerializeField]
+    UnityEvent HasHandleEvent;
+
+    [SerializeField]
     UnityEvent OneRotateEvent;
 
     [SerializeField]
@@ -89,6 +92,8 @@ public class MillHandle : MonoBehaviour
     {
         if (!IsInsideFlag)
             return;
+
+        HasHandleEvent.Invoke();
 
         SenterRT.up = (SenterRT.transform.position - dragInput).normalized;
         SenterRT.rotation = SenterRT.rotation * Quaternion.Euler(0, 0, RotateFixValue);

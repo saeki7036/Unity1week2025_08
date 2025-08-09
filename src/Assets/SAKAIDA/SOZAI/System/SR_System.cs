@@ -50,7 +50,7 @@ public class SR_System : MonoBehaviour
     }
     public GameMode gameMode = GameMode.Before;
 
-
+    public bool IsMainGamePlay () => gameMode == GameMode.MainGame;
 
     void Start()
     {

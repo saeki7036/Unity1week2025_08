@@ -31,8 +31,13 @@ public class BuildingsWave : MonoBehaviour
     [SerializeField]
     List<Transform> transforms;
 
+    SR_System system => SR_System.instance;
+
+    // Update is called once per frame
     void FixedUpdate()
     {
+        if (system.IsMainGamePlay() == false) return;
+
         for (int i = 0; i < transforms.Count; i++)
         {
             float scale = Mathf.Min(transforms[i].localScale.y + ScaleAdd_2D, ScaleMax_2D);

@@ -26,6 +26,8 @@ public class HandleController : MonoBehaviour
 
     public float GetMoveValue() => MoveValue;
 
+    SR_System system => SR_System.instance;
+
     public void InputRegister(InputManager input)
     {
         input.LeftDownEvent += InputPosCheck;
@@ -63,11 +65,11 @@ public class HandleController : MonoBehaviour
         if (!InsideInputflag)
             return;
 
+        if (system.IsMainGamePlay() == false) return;
+
         float currentValue = (dragInput.x - InputUIPos_X) / AdjustmentLimit;
 
         float ClampValue = Mathf.Clamp(currentValue, -ClampSpeedLimit, ClampSpeedLimit);
-
-        //Debug.Log(currentValue);
 
         MoveValue = ClampValue;
 

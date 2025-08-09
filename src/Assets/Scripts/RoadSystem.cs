@@ -19,10 +19,7 @@ public class RoadSystem : MonoBehaviour
     float DownMove = 0.002f;
 
     [SerializeField]
-    float AddScaleValue = 0.002f;
-
-    [SerializeField]
-    float ScaleUpMax = 0.6f;
+    float AddScaleValue = 0.01f;
 
     [SerializeField]
     float Approach_Y = -2f;
@@ -72,9 +69,14 @@ public class RoadSystem : MonoBehaviour
         RoadValue = new List<RoadObject>();
     }
 
+    SR_System system => SR_System.instance;
+
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (system.gameMode == SR_System.GameMode.GameStart) DestroyAll();
+        if (system.IsMainGamePlay() == false) return;
+
         for (int i = RoadValue.Count - 1; i >= 0; i--)
         {
             if (RoadValue[i] == null)
@@ -88,7 +90,10 @@ public class RoadSystem : MonoBehaviour
                 Transform roadTransform = RoadValue[i].GetTransform();
 
                 MoveTransForm(roadTransform, -DownMove);
-                ScaleTransForm(roadTransform);
+
+                float scaleMax = RoadValue[i].GetScaleMax();
+
+                ScaleTransForm(roadTransform, scaleMax, RoadValue[i].GetAddScaleValue());
 
                 int SpriteIndex = mapRangeInt(
                     roadTransform.position.y,
@@ -99,7 +104,7 @@ public class RoadSystem : MonoBehaviour
 
                 RoadValue[i].SetLayerNumber(SpriteIndex);
 
-                if (roadTransform.localScale.x == ScaleUpMax)
+                if (roadTransform.localScale.x == scaleMax)
                 {
                     float CameraDictance_X = GetDictanceToCamera_X(roadTransform.position.x);
                     bool IsHit = (HitDistance > CameraDictance_X);
@@ -142,15 +147,32 @@ public class RoadSystem : MonoBehaviour
         transform.position = pos;
     }
 
-    void ScaleTransForm(Transform transform)
+    void ScaleTransForm(Transform transform, float scaleMax, float AddScaleValue)
     {
         Vector3 scale = transform.localScale;
         scale = new Vector3()
         {
-            x = Mathf.Min(scale.x + AddScaleValue, ScaleUpMax),
-            y = Mathf.Min(scale.x + AddScaleValue, ScaleUpMax),
+            x = Mathf.Min(scale.x + AddScaleValue, scaleMax),
+            y = Mathf.Min(scale.x + AddScaleValue, scaleMax),
             z = 1
         };
         transform.localScale = scale;
+    }
+
+    void DestroyAll()
+    {
+        for (int i = RoadValue.Count - 1; i >= 0; i--)
+        {
+            if (RoadValue[i] == null)
+            {
+                RoadValue.RemoveAt(i);
+                continue;
+            }
+            else
+            {
+                RoadValue[i].Destroy();
+                RoadValue.RemoveAt(i);
+            }
+        }
     }
 }
