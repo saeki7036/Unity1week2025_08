@@ -33,6 +33,10 @@ public class SR_TEST : MonoBehaviour
         {
             system.gameMode = SR_System.GameMode.GameStart;
         }
+        if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            system.TutorialNext();
+        }
         if (Input.GetKeyDown(KeyCode.P))
         {
             scoreManager.isAddScore(10);

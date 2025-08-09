@@ -13,6 +13,8 @@ public class SR_CoffeeController : MonoBehaviour
     [SerializeField] GameObject CoffeeBeansObject;
 
     [SerializeField] Transform BeenTarget;
+    [SerializeField] GameObject CoffeeMountainBody;
+    [SerializeField] float CoffeeMountainBody_Double =0.1f;
     SR_AudioManager audioManager => SR_AudioManager.instance;
     [SerializeField] AudioClip CoffeePop;
 
@@ -32,6 +34,7 @@ public class SR_CoffeeController : MonoBehaviour
     private void FixedUpdate()
     {
         CoffeeSlider.value = CoffeeWater;
+        CoffeeMountainBody.transform.localScale = new Vector3(1,GetCoffeeBeans_namber * CoffeeMountainBody_Double,1);
         if (_System.gameMode == SR_System.GameMode.MainGame) 
         {
              isDecreaseCoffee(_System.DecreaseCoffee);

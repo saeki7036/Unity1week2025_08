@@ -11,8 +11,24 @@ public class SR_System : MonoBehaviour
 
     [SerializeField] AudioClip GameOverClip_Bomb;
 
+    [Space]
+    int T_Phase = 0;
+    float T_Count = 0;
+    [SerializeField] bool PlayTutorial = false;
+    [SerializeField] Animator TutorialEventTEXT;
+    public enum TutorialPhase
+    {
+
+        CoffeeBag,
+        CoffeeLever,
+        CoffeeHandle
+
+    }
+    TutorialPhase tutorialPhase = TutorialPhase.CoffeeBag;[SerializeField] AudioClip TutorialClip;
+    [Space]
     [SerializeField] AudioClip NingenKorosu_Clip;
     [SerializeField] AudioClip GameStartClip;
+    
     [SerializeField] Animator ShutterAnimator;
 
     [SerializeField] SR_ScoreManager scoreManager;
@@ -22,16 +38,18 @@ public class SR_System : MonoBehaviour
 
     public float DecreaseCoffee = 1;//一秒の減少量
 
-    public enum GameMode 
-    { 
-    
+    public enum GameMode
+    {
+
         Before,
         GameStart,
         MainGame,
         After
-    
+
     }
     public GameMode gameMode = GameMode.Before;
+
+
 
     void Start()
     {
@@ -48,7 +66,7 @@ public class SR_System : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        switch (gameMode) 
+        switch (gameMode)
         {
 
             case GameMode.Before:
@@ -64,6 +82,97 @@ public class SR_System : MonoBehaviour
                 isAfter();
                 break;
 
+        }
+        if (!PlayTutorial)
+        {
+
+            switch (tutorialPhase)
+            {
+                case TutorialPhase.CoffeeBag:
+                    isT_CoffeeBag();
+                    break;
+                case TutorialPhase.CoffeeLever:
+                    isT_CoffeeLever();
+                    break;
+                case TutorialPhase.CoffeeHandle:
+                    isT_CoffeeHandle();
+                    break;
+            }
+        }
+    }
+
+    void isT_CoffeeBag()
+    {
+
+        if (T_Phase == 0)
+        {
+            audioManager.isPlaySE(TutorialClip);
+            TutorialEventTEXT.Play("降りるコーヒーバッグ", 0, 0);
+            T_Phase++;//T_Phase == 1は待機用
+        }
+        if (T_Phase == 2)
+        {
+            TutorialEventTEXT.Play("上がるコーヒーバッグ", 0, 0);
+            T_Phase++;
+        }
+        if (T_Phase == 3)
+        {
+            T_Count += Time.deltaTime;
+            if (T_Count > 0.5)
+            {
+                T_Phase = 0;
+                T_Count = 0;
+                tutorialPhase = TutorialPhase.CoffeeLever;
+            }
+        }
+
+    }
+    void isT_CoffeeLever() 
+    {
+        if (T_Phase == 0)
+        {
+            audioManager.isPlaySE(TutorialClip);
+            TutorialEventTEXT.Play("降りるレバー", 0, 0);
+            T_Phase++;//T_Phase == 1は待機用
+        }
+        if (T_Phase == 2)
+        {
+            TutorialEventTEXT.Play("上がるレバー", 0, 0);
+            T_Phase++;
+        }
+        if (T_Phase == 3)
+        {
+            T_Count += Time.deltaTime;
+            if (T_Count > 0.5)
+            {
+                T_Phase = 0;
+                T_Count = 0;
+                tutorialPhase = TutorialPhase.CoffeeHandle;
+            }
+        }
+    }
+    void isT_CoffeeHandle() 
+    {
+        if (T_Phase == 0)
+        {
+            audioManager.isPlaySE(TutorialClip);
+            TutorialEventTEXT.Play("降りるハンドル", 0, 0);
+            T_Phase++;//T_Phase == 1は待機用
+        }
+        if (T_Phase == 2)
+        {
+            TutorialEventTEXT.Play("上がるハンドル", 0, 0);
+            T_Phase++;
+        }
+        if (T_Phase == 3)
+        {
+            T_Count += Time.deltaTime;
+            if (T_Count > 0.5)
+            {
+                T_Phase = 0;
+                T_Count = 0;
+                PlayTutorial = true;
+            }
         }
     }
     void isGameStart() 
@@ -101,7 +210,10 @@ public class SR_System : MonoBehaviour
     {
         gameMode = GameMode.After;
     }
-
+    public void TutorialNext() 
+    {
+        T_Phase++;
+    }
     public IEnumerator Shake(float duration, float magnitude)
     {
 
