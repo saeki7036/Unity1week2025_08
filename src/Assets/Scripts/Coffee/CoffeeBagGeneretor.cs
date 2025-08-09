@@ -29,7 +29,29 @@ public class CoffeeBagGeneretor : MonoBehaviour
     // インスタンス（シングルトン）
     public static CoffeeBagGeneretor Instance { get; private set; }
 
-    private void Awake()
+    SR_System system => SR_System.instance;
+
+    bool IsAllOpend;
+
+    void Start()
+    {
+        IsAllOpend = false;
+    }
+
+    void LateUpdate()
+    {
+        if(IsAllOpend)
+        {
+            if (system.gameMode == SR_System.GameMode.GameStart)
+                DestroyAll();
+        }
+        else
+        {
+            IsAllOpend = transform.childCount == 0;
+        }
+    }
+
+    void Awake()
     {
         // インスタンスを設定（複数防止）
         if (Instance == null)
@@ -47,6 +69,8 @@ public class CoffeeBagGeneretor : MonoBehaviour
     public void GenereteCoffeeBag(bool IsLeft)
     {
         if (this == null) return;
+
+        if (system.IsMainGamePlay() == false) return;
 
         Vector3 generetePos = IsLeft ? LeftGeneretePos.position : RightGeneretePos.position;
 
@@ -72,5 +96,13 @@ public class CoffeeBagGeneretor : MonoBehaviour
         }
 
         return null;
+    }
+
+    private void DestroyAll()
+    {
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            Destroy(transform.GetChild(i).gameObject);
+        } 
     }
 }

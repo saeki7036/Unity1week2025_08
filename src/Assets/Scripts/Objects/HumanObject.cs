@@ -23,6 +23,9 @@ public class HumanObject : RoadObject
     float HitTime = 3f;
 
     [SerializeField]
+    float RemoveTime = 2f;
+
+    [SerializeField]
     int SpriteChengeInterval = 10;
 
     Transform cameraTransform;
@@ -78,7 +81,7 @@ public class HumanObject : RoadObject
     {
         AsyncStartRemove();
 
-        Destroy(gameObject, HitTime);
+        Destroy(gameObject, RemoveTime);
     }
 
     async void AsyncStartHit()
@@ -88,7 +91,7 @@ public class HumanObject : RoadObject
 
     async void AsyncStartRemove()
     {
-        await SideRemoveAsync(HitTime);
+        await SideRemoveAsync(RemoveTime);
     }
 
     async Task MoveAndRotateAsync(float duration)
@@ -145,6 +148,7 @@ public class HumanObject : RoadObject
     {
         if (this == null) return;
 
-        CoffeeBagGeneretor.Instance.GenereteCoffeeBag(isLeftMove);
+        if(IsHit)
+            CoffeeBagGeneretor.Instance.GenereteCoffeeBag(isLeftMove);
     }
 }

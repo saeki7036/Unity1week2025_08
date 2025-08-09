@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using static UnityEditor.PlayerSettings;
 
 public class BardBody : MonoBehaviour
 {
@@ -40,9 +39,9 @@ public class BardBody : MonoBehaviour
             {
                 NeckRTs[i].gameObject.SetActive(true);
 
-                float t = (float)i / NeckRTs.Count();               // 0.0 ~ 1.0
+                float t = (float)i / NeckRTs.Count();
 
-                Vector2 currentPos = Vector2.Lerp(NeckAnchorRT.position, headPos, t); // 等間隔の位置
+                Vector2 currentPos = Vector2.Lerp(NeckAnchorRT.position, headPos, t);
 
                 NeckRTs[i].position = currentPos;
 

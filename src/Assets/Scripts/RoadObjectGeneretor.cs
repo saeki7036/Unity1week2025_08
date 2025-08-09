@@ -34,9 +34,13 @@ public class RoadObjectGeneretor : MonoBehaviour
             Debug.LogError("シリアライズ漏れ");
     }
 
+    SR_System system => SR_System.instance;
+
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (system.IsMainGamePlay() == false) return;
+
         if (roadSystem == null)
             return;
 

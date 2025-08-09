@@ -11,6 +11,16 @@ public class RoadObject : MonoBehaviour
     [SerializeField]
     protected SpriteRenderer spriteRenderer;
 
+    [SerializeField]
+    float ScaleMax =  1.5f;
+
+    [SerializeField]
+    float AddScaleValue = 0.01f;
+
+    public float GetScaleMax() => ScaleMax;
+
+    public float GetAddScaleValue() => AddScaleValue;
+
     public bool IsLayerFlont() => spriteRenderer.sortingOrder >= 0;
 
     public void SetLayerNumber(int index) => spriteRenderer.sortingOrder = index;
