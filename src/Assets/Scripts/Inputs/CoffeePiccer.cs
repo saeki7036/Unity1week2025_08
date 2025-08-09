@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class CoffeePiccer : MonoBehaviour
 {
@@ -55,7 +56,7 @@ public class CoffeePiccer : MonoBehaviour
 
             rb2D = picCoffeeBag.GetRB2D();
 
-            picCoffeeBag.PicBag();
+            picTransform.position = picTransform.position + Vector3.left;
 
             picVelocity = rb2D.velocity;
 
@@ -68,7 +69,7 @@ public class CoffeePiccer : MonoBehaviour
     {
         if (picTransform == null) return;
 
-        Vector2 WorldPos2D = GetWorldPoin2D(DragPos);
+        Vector2 WorldPos2D = GetWorldPoin2D(DragPos) + Vector2.left;
 
         MoveValueCounter += Vector2.Distance(picTransform.position, WorldPos2D);
 
@@ -86,7 +87,6 @@ public class CoffeePiccer : MonoBehaviour
 
             rb2D.AddForce(RemoveVelocity.normalized * RemovePower, ForceMode2D.Impulse);
 
-            picCoffeeBag.RereaceBag();
             picCoffeeBag.OpenBag();
 
             for (int i = 0; i < beenSpwanValue; i++)
@@ -104,7 +104,6 @@ public class CoffeePiccer : MonoBehaviour
 
         rb2D.velocity = picVelocity;
 
-        picCoffeeBag.RereaceBag();
         ResetPic();
     }
 

@@ -20,10 +20,6 @@ public class CoffeeBag : MonoBehaviour
     Transform BagTransform;
     public Rigidbody2D GetRB2D() => rb2D;
 
-    public void PicBag() => BagTransform.localPosition = Vector2.left;
-
-    public void RereaceBag() => BagTransform.localPosition = Vector2.zero;
-
     public void OpenBag()
     {
         spriteRenderer.sprite = openSprite;

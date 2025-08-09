@@ -217,7 +217,7 @@ public class SR_System : MonoBehaviour
     public IEnumerator Shake(float duration, float magnitude)
     {
 
-        Debug.Log("A");
+        //Debug.Log("A");
         //magnitude = 揺らす強さ
         //duration　= 揺らす時間
         Vector3 originalPos = Camera.transform.localPosition; // 元の位置を記憶

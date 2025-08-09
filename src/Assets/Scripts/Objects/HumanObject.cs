@@ -5,6 +5,9 @@ using UnityEngine;
 public class HumanObject : RoadObject
 {
     [SerializeField]
+    Sprite[] DefaltSprites;
+
+    [SerializeField]
     Sprite SurprisedSprite;
 
     [SerializeField] 
@@ -19,17 +22,49 @@ public class HumanObject : RoadObject
     [SerializeField] 
     float HitTime = 3f;
 
+    [SerializeField]
+    int SpriteChengeInterval = 10;
+
     Transform cameraTransform;
+
+    bool IsHit;
 
     bool isLeftMove;
 
+    int SpriteChengeCount;
+    int SpriteChengeIndex;
+
     void Start()
     {
+        IsHit = false;
         cameraTransform = Camera.main.transform;
+        SpriteChengeIndex = 0;
     }
+
+    void FixedUpdate()
+    {
+        if (IsHit) return;
+        if (DefaltSprites.Length < 2) return;
+
+        SpriteChengeCount++;
+
+        if(SpriteChengeInterval <= SpriteChengeCount)
+        {
+            SpriteChengeCount = 0;
+            SpriteChengeIndex++;
+
+            if (DefaltSprites.Length <= SpriteChengeIndex)
+                SpriteChengeIndex = 0;
+
+            spriteRenderer.sprite = DefaltSprites[SpriteChengeIndex];
+        }
+    }
+
 
     protected override void HitAction()
     {
+        IsHit = true;
+
         SR_System.instance.NINGEN_KOROSU();
 
         spriteRenderer.sprite = SurprisedSprite;

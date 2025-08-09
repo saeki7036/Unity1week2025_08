@@ -10,7 +10,7 @@ public class RoadObjectGeneretor : MonoBehaviour
     RoadSystem roadSystem;
 
     [SerializeField]
-    GameObject GeneretObject;
+    GameObject[] GeneretObjects;
 
     [SerializeField]
     float SpawnRandomPosMin = -10, SpawnRandomPosMax = 10;
@@ -51,6 +51,8 @@ public class RoadObjectGeneretor : MonoBehaviour
 
     void ObjectGeneret()
     {
+        if (GeneretObjects.Length == 0) return;
+
         Vector3 pos = new()
         {
             x = UnityEngine.Random.Range(SpawnRandomPosMin, SpawnRandomPosMax),
@@ -58,7 +60,8 @@ public class RoadObjectGeneretor : MonoBehaviour
             z = 0,
         };
 
-        GameObject SpawnObject = Instantiate(GeneretObject, pos, Quaternion.identity);
+        GameObject SpawnObject = Instantiate(
+            GeneretObjects[Random.Range(0, GeneretObjects.Length)], pos, Quaternion.identity);
 
         var RoadBaseClass = SpawnObject.GetComponent<RoadObject>();
 
