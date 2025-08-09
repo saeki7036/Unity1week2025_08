@@ -499,7 +499,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Camera: {fileID: 329047094}
   GameOverClip_Bomb: {fileID: 8300000, guid: 8e38d8146ad9ac24184a9616d2bee25d, type: 3}
-  PlayTutorial: 0
+  PlayTutorial: 1
   TutorialEventTEXT: {fileID: 324205807}
   TutorialClip: {fileID: 8300000, guid: ac542ac0a55e2c84cadf3e8e07baec40, type: 3}
   NingenKorosu_Clip: {fileID: 8300000, guid: a992370ba41bb034f97781cd391fe773, type: 3}

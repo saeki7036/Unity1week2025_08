@@ -83,6 +83,7 @@ public class SR_System : MonoBehaviour
                 break;
 
         }
+
         if (!PlayTutorial)
         {
 
