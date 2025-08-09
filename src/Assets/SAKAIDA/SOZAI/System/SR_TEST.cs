@@ -19,10 +19,11 @@ public class SR_TEST : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space)) 
+        if (Input.GetKey(KeyCode.Space)) 
         {
 
-            system.NINGEN_KOROSU();
+            //system.NINGEN_KOROSU();
+            _CoffeeController.LeverClipPlay();
         
         }
         if (Input.GetKeyDown(KeyCode.DownArrow)) 
