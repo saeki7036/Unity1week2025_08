@@ -31,23 +31,28 @@ public class CoffeeBagGeneretor : MonoBehaviour
 
     SR_System system => SR_System.instance;
 
-    bool IsAllOpend;
+    bool AllOpend;
+
+    public bool IsAllOpend() => AllOpend;
 
     void Start()
     {
-        IsAllOpend = false;
+        AllOpend = false;
     }
 
     void LateUpdate()
     {
-        if(IsAllOpend)
+        if(AllOpend)
         {
             if (system.gameMode == SR_System.GameMode.GameStart)
                 DestroyAll();
         }
         else
         {
-            IsAllOpend = transform.childCount == 0;
+            AllOpend = transform.childCount == 0;
+
+            if (AllOpend)
+                system.TutorialNext();
         }
     }
 

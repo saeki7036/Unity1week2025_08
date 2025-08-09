@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static SR_System;
 
 public class HandleController : MonoBehaviour
 {
@@ -19,10 +20,15 @@ public class HandleController : MonoBehaviour
     [SerializeField]
     float ClampSpeedLimit = 5f;
 
+    [SerializeField]
+    MillHandle millHandle;
+
     float InputUIPos_X;
     bool InsideInputflag;
 
     float MoveValue;
+
+    bool IsPlayStart;
 
     public float GetMoveValue() => MoveValue;
 
@@ -48,11 +54,14 @@ public class HandleController : MonoBehaviour
     {
         InsideInputflag = false;
         MoveValue = 0;
+        IsPlayStart = false;
     }
 
     void InputPosCheck(Vector3 downInput)
     {
         InsideInputflag = IsPointInsideHandle(new Vector2(downInput.x, downInput.y));
+
+        //Debug.Log(InsideInputflag);
 
         if (!InsideInputflag)
             return;
@@ -65,11 +74,19 @@ public class HandleController : MonoBehaviour
         if (!InsideInputflag)
             return;
 
-        if (system.IsMainGamePlay() == false) return;
+        if (millHandle.IsTutoreald() && !IsPlayStart)
+        {
+            system.TutorialNext();
+            system.gameMode = GameMode.GameStart;
+            IsPlayStart = true;
+        }
+            
 
         float currentValue = (dragInput.x - InputUIPos_X) / AdjustmentLimit;
 
         float ClampValue = Mathf.Clamp(currentValue, -ClampSpeedLimit, ClampSpeedLimit);
+
+        if (system.IsMainGamePlay() == false) return;
 
         MoveValue = ClampValue;
 
