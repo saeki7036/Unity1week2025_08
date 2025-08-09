@@ -15,10 +15,15 @@ public class InputIventHandler : MonoBehaviour
 
     [SerializeField]
     BardHeadMovement bardHeadMovement;
+
+    [SerializeField]
+    MillHandle millHandle;
+
     void Start()
     {
         handleController.InputRegister(manager);
         coffeePiccer.InputRegister(manager);
         bardHeadMovement.InputRegister(manager);
+        millHandle.InputRegister(manager);
     }
 }
