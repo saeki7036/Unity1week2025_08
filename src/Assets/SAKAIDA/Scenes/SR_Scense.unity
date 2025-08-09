@@ -506,6 +506,7 @@ MonoBehaviour:
   GameStartClip: {fileID: 8300000, guid: 294a893f5ebc330419e50c0e676415f9, type: 3}
   ShutterAnimator: {fileID: 145052801}
   scoreManager: {fileID: 81624142}
+  coffeeController: {fileID: 577063068}
   ScoreBoard: {fileID: 1808574062}
   GameStartTime: 0
   DecreaseCoffee: 5

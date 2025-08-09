@@ -33,6 +33,7 @@ public class SR_System : MonoBehaviour
     [SerializeField] Animator ShutterAnimator;
 
     [SerializeField] SR_ScoreManager scoreManager;
+    [SerializeField] SR_CoffeeController coffeeController;
     [SerializeField] GameObject ScoreBoard;
     [SerializeField] float GameStartTime = 0;
     float GameStartCount = 0;
@@ -207,6 +208,9 @@ public class SR_System : MonoBehaviour
     {
 
         audioManager.isPlaySE(GameStartClip);
+
+        coffeeController.CoffeeWater = coffeeController.MaxCoffeeWater;
+        coffeeController.GetCoffeeBeans_namber = 0;
 
         scoreManager.isClearScoreText();
         ShutterAnimator.Play("開く",0,0);
