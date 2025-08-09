@@ -21,7 +21,8 @@ public class SR_System : MonoBehaviour
 
         CoffeeBag,
         CoffeeLever,
-        CoffeeHandle
+        CoffeeHandle,
+        NINGEN_KOROSU
 
     }
     TutorialPhase tutorialPhase = TutorialPhase.CoffeeBag;[SerializeField] AudioClip TutorialClip;
@@ -83,6 +84,7 @@ public class SR_System : MonoBehaviour
                 break;
 
         }
+
         if (!PlayTutorial)
         {
 
@@ -97,10 +99,36 @@ public class SR_System : MonoBehaviour
                 case TutorialPhase.CoffeeHandle:
                     isT_CoffeeHandle();
                     break;
+                case TutorialPhase.NINGEN_KOROSU:
+                    isT_NINGEN_KOROSU();
+                    break;
             }
         }
     }
-
+    void isT_NINGEN_KOROSU() 
+    {
+        if (T_Phase == 0)
+        {
+            audioManager.isPlaySE(TutorialClip);
+            TutorialEventTEXT.Play("降りるニンゲンコロス", 0, 0);
+            T_Phase++;//T_Phase == 1は待機用
+        }
+        if (T_Phase == 2)
+        {
+            TutorialEventTEXT.Play("上がるニンゲンコロス", 0, 0);
+            T_Phase++;
+        }
+        if (T_Phase == 3)
+        {
+            T_Count += Time.deltaTime;
+            if (T_Count > 0.5)
+            {
+                T_Phase = 0;
+                T_Count = 0;
+                PlayTutorial = true;
+            }
+        }
+    }
     void isT_CoffeeBag()
     {
 
@@ -171,7 +199,7 @@ public class SR_System : MonoBehaviour
             {
                 T_Phase = 0;
                 T_Count = 0;
-                PlayTutorial = true;
+                tutorialPhase = TutorialPhase.NINGEN_KOROSU;
             }
         }
     }
