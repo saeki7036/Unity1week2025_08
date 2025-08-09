@@ -24,12 +24,17 @@ public class SR_CoffeeController : MonoBehaviour
     [SerializeField] AudioClip AddCoffeeClip;
     [SerializeField] AudioClip AddCoffeeClip1;
     [SerializeField] AudioClip NoCoffeeBeanseClip;
+    [SerializeField] AudioClip LevarClip;
     [SerializeField] GameObject CoffeeBeanse_TARINAI_TEXT;
     [SerializeField] Vector2 TARINAI_SpawnPoint = Vector2.zero;
+    [SerializeField] float LeverTimer = 0.1f;
+    float LeverCount = 0;
     [Space]
     public int GetCoffeeBeans_namber=0;
     public float CoffeeWater = 0;
     public float MaxCoffeeWater = 100;
+
+   
 
     //public float DecreaseCoffee = 1;//一秒の減少量
 
@@ -69,6 +74,15 @@ public class SR_CoffeeController : MonoBehaviour
         {
              isDecreaseCoffee(_System.DecreaseCoffee);
         }
+        if (LeverTimer < LeverCount) 
+        {
+            LeverCount = 0;
+            audioManager.isPlaySE(LevarClip);
+        }
+    }
+    public void LeverClipPlay() 
+    {
+        LeverCount += Time.deltaTime;
     }
     public void SpawnCoffeeBeans(Transform SpawnPointObject) //コーヒー豆を召喚する処理。指定したオブジェクトから発生する
     {

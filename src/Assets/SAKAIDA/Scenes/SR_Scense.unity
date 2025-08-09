@@ -1273,11 +1273,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _System: {fileID: 153213523}
   CoffeeSlider: {fileID: 1454397072}
+  Canvas: {fileID: 84879188}
   CoffeeBeansObject: {fileID: 5005146952930830752, guid: 74408662cbf0a6d49a941894a70e8896, type: 3}
   BeenTarget: {fileID: 0}
   CoffeeMountainBody: {fileID: 1537243066}
   CoffeeMountainBody_Double: 0.04
   CoffeePop: {fileID: 8300000, guid: 784f7d9e649783f44875e03605f0f59c, type: 3}
+  MakeCoffee_Decrease_GetCoffeeBeans_namber: 5
+  MakeCoffee_Increase_CoffeeWater: 10
+  AddCoffeeClip: {fileID: 8300000, guid: 4175daccdde2aa34d99c3847bd891f92, type: 3}
+  AddCoffeeClip1: {fileID: 8300000, guid: 678b47412c428774b8a5e424cd2858db, type: 3}
+  NoCoffeeBeanseClip: {fileID: 8300000, guid: 648acda089ca9b946b2c40c3bdec1ef1, type: 3}
+  LevarClip: {fileID: 8300000, guid: cd1d375f93c07ad45bf67093db62e39a, type: 3}
+  CoffeeBeanse_TARINAI_TEXT: {fileID: 8035077806231222447, guid: 07f9915013dde174caa63b263e63b35c, type: 3}
+  TARINAI_SpawnPoint: {x: 140, y: 220}
+  LeverTimer: 0.15
   GetCoffeeBeans_namber: 0
   CoffeeWater: 100
   MaxCoffeeWater: 100
