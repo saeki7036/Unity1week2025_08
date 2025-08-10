@@ -53,7 +53,7 @@ public class SR_TEST : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            _CoffeeController.CoffeeWater = 10f;
+            _CoffeeController.CoffeeWater = 100f;
         }
     }
 }
