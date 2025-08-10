@@ -21,9 +21,9 @@ public class InputIventHandler : MonoBehaviour
 
     void Start()
     {
-        handleController.InputRegister(manager);
-        coffeePiccer.InputRegister(manager);
-        bardHeadMovement.InputRegister(manager);
-        millHandle.InputRegister(manager);
+        handleController?.InputRegister(manager);
+        coffeePiccer?.InputRegister(manager);
+        bardHeadMovement?.InputRegister(manager);
+        millHandle?.InputRegister(manager);
     }
 }

@@ -33,7 +33,14 @@ public class RoadObjectGeneretor : MonoBehaviour
     [SerializeField]
     float AddValueRankRimit = 20f;
 
+    [SerializeField]
+    int LimitMax = 15;
+
+    [SerializeField]
+    int StartGeneretor = 0;
+
     float ResetCounter;
+    bool StartFlag;
 
     // Start is called before the first frame update
     void Start()
@@ -51,6 +58,7 @@ public class RoadObjectGeneretor : MonoBehaviour
     {
         if (system.IsMainGamePlay() == false)
         {
+            StartFlag = true;
             timeCounter = ResetCounter;
             return;
         }
@@ -58,8 +66,19 @@ public class RoadObjectGeneretor : MonoBehaviour
         if (roadSystem == null)
             return;
 
-        timeCounter += timeCountValue * (1 + (int)(timeCounterClass.GetTravelCount() / AddValueRankRimit));
+        int addCounterInt = Mathf.Min(LimitMax,1 + (int)(timeCounterClass.GetTravelCount() / AddValueRankRimit));
+
+        timeCounter += timeCountValue * addCounterInt;
         
+        if(system.IsMainGamePlay() && StartFlag)
+        {
+            StartFlag = false;
+            for (int i = 0; i < StartGeneretor; i++)
+            {
+                ObjectGeneret();
+            }
+        }
+
         if(timeCounter > GeneretTime)
         {
             timeCounter = 0;
