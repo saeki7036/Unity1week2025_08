@@ -7,10 +7,11 @@ public class SR_CoffeeController : MonoBehaviour
 {
     // Start is called before the first frame update
 
+    [SerializeField] SR_ScoreManager scoreManager;
     [SerializeField] SR_System _System;
     [SerializeField] Slider CoffeeSlider;
     [SerializeField] GameObject Canvas;
-
+    
     [SerializeField] GameObject CoffeeBeansObject;
 
     [SerializeField] Transform BeenTarget;
@@ -48,6 +49,8 @@ public class SR_CoffeeController : MonoBehaviour
     {
         if (GetCoffeeBeans_namber >= MakeCoffee_Decrease_GetCoffeeBeans_namber)
         {
+            scoreManager.isAddPoint_Lever();
+
             audioManager.isPlaySE(AddCoffeeClip);
             audioManager.isPlaySE(AddCoffeeClip1);
             GetCoffeeBeans_namber -= MakeCoffee_Decrease_GetCoffeeBeans_namber;
