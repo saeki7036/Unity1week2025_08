@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Experimental.Rendering;
 
 public class MillHandle : MonoBehaviour
 {
@@ -23,9 +24,18 @@ public class MillHandle : MonoBehaviour
     [SerializeField]
     float RotateFixValue = 90;
 
+    [SerializeField]
+    CoffeeBagGeneretor coffeeBagGeneretor;
+
     int currentPoint;
     int NextPoint;
     bool IsInsideFlag;
+
+    bool Tutoreald;
+
+    SR_System system => SR_System.instance;
+
+    public  bool IsTutoreald() => Tutoreald == false;
 
     public void InputRegister(InputManager input)
     {
@@ -38,6 +48,7 @@ public class MillHandle : MonoBehaviour
     void Start()
     {
         ResetHandle();
+        Tutoreald = true;
     }
 
     float DistancePaw(Vector3 a, Vector3 b)
@@ -110,6 +121,13 @@ public class MillHandle : MonoBehaviour
                     NextPoint = 0;
                     OneRotateEvent.Invoke();
                     Debug.Log("1Rotate");
+
+                    if (Tutoreald && coffeeBagGeneretor.IsAllOpend())
+                    {
+                        Tutoreald = false;
+                        system.TutorialNext();
+                    }
+                        
                 }
             }
             currentPoint = newPoint;
