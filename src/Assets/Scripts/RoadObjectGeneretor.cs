@@ -7,6 +7,9 @@ public class RoadObjectGeneretor : MonoBehaviour
     string GeneretObjectName;
 
     [SerializeField]
+    TimeCounter timeCounterClass;
+
+    [SerializeField]
     RoadSystem roadSystem;
 
     [SerializeField]
@@ -27,11 +30,18 @@ public class RoadObjectGeneretor : MonoBehaviour
     [SerializeField]
     float timeCounter = -100f;
 
+    [SerializeField]
+    float AddValueRankRimit = 20f;
+
+    float ResetCounter;
+
     // Start is called before the first frame update
     void Start()
     {
         if (roadSystem == null)
             Debug.LogError("シリアライズ漏れ");
+
+        ResetCounter = timeCounter;
     }
 
     SR_System system => SR_System.instance;
@@ -39,12 +49,16 @@ public class RoadObjectGeneretor : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (system.IsMainGamePlay() == false) return;
+        if (system.IsMainGamePlay() == false)
+        {
+            timeCounter = ResetCounter;
+            return;
+        }
 
         if (roadSystem == null)
             return;
 
-        timeCounter += timeCountValue;
+        timeCounter += timeCountValue * (1 + (int)(timeCounterClass.GetTravelCount() / AddValueRankRimit));
         
         if(timeCounter > GeneretTime)
         {
