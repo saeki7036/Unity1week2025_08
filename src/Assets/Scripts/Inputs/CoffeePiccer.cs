@@ -6,6 +6,9 @@ using UnityEngine.UIElements;
 public class CoffeePiccer : MonoBehaviour
 {
     [SerializeField]
+    Transform OpendBagParent;
+
+    [SerializeField]
     float PicRadius = 2.5f;
 
     [SerializeField]
@@ -79,6 +82,8 @@ public class CoffeePiccer : MonoBehaviour
         }
         else
         {
+            picTransform.parent = OpendBagParent;
+
             Vector2 RemoveVelocity = new Vector2()
             {
                 x = WorldPos2D.x - picTransform.position.x,

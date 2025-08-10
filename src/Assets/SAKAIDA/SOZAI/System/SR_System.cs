@@ -114,7 +114,16 @@ public class SR_System : MonoBehaviour
         {
             audioManager.isPlaySE(TutorialClip);
             TutorialEventTEXT.Play("降りるニンゲンコロス", 0, 0);
-            T_Phase++;//T_Phase == 1は待機用
+            T_Phase++;
+        }
+        if(T_Phase == 1)
+        {
+            T_Count += Time.deltaTime;
+            if (T_Count > 3.5)
+            {
+                T_Count = 0;
+                T_Phase++;
+            }
         }
         if (T_Phase == 2)
         {
