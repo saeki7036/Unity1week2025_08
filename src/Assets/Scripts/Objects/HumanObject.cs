@@ -72,6 +72,8 @@ public class HumanObject : RoadObject
 
         spriteRenderer.sprite = SurprisedSprite;
 
+        CoffeeBagGeneretor.Instance.GenereteCoffeeBag(isLeftMove);
+
         AsyncStartHit();
 
         Destroy(gameObject, HitTime);
@@ -148,7 +150,7 @@ public class HumanObject : RoadObject
     {
         if (this == null) return;
 
-        if(IsHit)
-            CoffeeBagGeneretor.Instance.GenereteCoffeeBag(isLeftMove);
+        //if(IsHit)
+        //    CoffeeBagGeneretor.Instance.GenereteCoffeeBag(isLeftMove);
     }
 }
