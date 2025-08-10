@@ -24,7 +24,10 @@ public class SR_System : MonoBehaviour
         CoffeeBag,
         CoffeeLever,
         CoffeeHandle,
-        NINGEN_KOROSU
+        NINGEN_KOROSU,
+        ReStart,
+
+        None,
 
     }
     TutorialPhase tutorialPhase = TutorialPhase.CoffeeBag;[SerializeField] AudioClip TutorialClip;
@@ -105,6 +108,16 @@ public class SR_System : MonoBehaviour
                 case TutorialPhase.NINGEN_KOROSU:
                     isT_NINGEN_KOROSU();
                     break;
+                case TutorialPhase.ReStart:
+                    isT_ReStart();
+                    break;
+            }
+        }
+        else 
+        {
+            if (tutorialPhase != TutorialPhase.None) 
+            {
+                isT_ReStart();
             }
         }
     }
@@ -138,8 +151,35 @@ public class SR_System : MonoBehaviour
                 T_Phase = 0;
                 T_Count = 0;
                 PlayTutorial = true;
+                tutorialPhase = TutorialPhase.None;
             }
         }
+    }
+    void isT_ReStart()
+    {
+
+        if (T_Phase == 0)
+        {
+            audioManager.isPlaySE(TutorialClip);
+            TutorialEventTEXT.Play("降りるリスタート", 0, 0);
+            T_Phase++;//T_Phase == 1は待機用
+        }
+        if (T_Phase == 2)
+        {
+            TutorialEventTEXT.Play("上がるリスタート", 0, 0);
+            T_Phase++;
+        }
+        if (T_Phase == 3)
+        {
+            T_Count += Time.deltaTime;
+            if (T_Count > 0.5)
+            {
+                T_Phase = 0;
+                T_Count = 0;
+                tutorialPhase = TutorialPhase.None;
+            }
+        }
+
     }
     void isT_CoffeeBag()
     {
@@ -233,8 +273,10 @@ public class SR_System : MonoBehaviour
         audioManager.isPlaySE(GameOverClip_Bomb);
 
         StartCoroutine(Shake(0.3f,0.8f));
+        tutorialPhase = TutorialPhase.ReStart;
+        scoreManager.isAddScore(scoreManager.Length_point);
 
-        scoreManager.ChangeScoreBoard();
+        //scoreManager.ChangeScoreBoard();
 
         scoreManager.SaveScore = scoreManager.AllScore;//スコア情報を念のため保存
         scoreManager.AllScore = 0;//ゲームの合計スコア

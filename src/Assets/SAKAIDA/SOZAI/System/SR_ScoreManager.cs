@@ -112,6 +112,8 @@ public class SR_ScoreManager : MonoBehaviour
         ScoreAnimator.Play("加算", 0, 0);
 
         audioManager.isPlaySE(ScoreGetClip);
+
+        ChangeScoreBoard();
     }
     public void isClearScoreText()
     {
