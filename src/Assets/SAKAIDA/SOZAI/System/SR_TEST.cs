@@ -40,7 +40,8 @@ public class SR_TEST : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            _CoffeeController.MakeCoffeeWater();
+            // _CoffeeController.MakeCoffeeWater();
+            scoreManager.isAddPoint_Lever();
         }
         if (Input.GetKeyDown(KeyCode.P))
         {
