@@ -51,5 +51,9 @@ public class SR_TEST : MonoBehaviour
         {
             _CoffeeController.SpawnCoffeeBeans(transform);
         }
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            _CoffeeController.CoffeeWater = 10f;
+        }
     }
 }

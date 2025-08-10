@@ -1474,18 +1474,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1221483890}
-        m_TargetAssemblyTypeName: SR_ScoreManager, Assembly-CSharp
-        m_MethodName: isAddPoint_Lever
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
   RotateFixValue: -90
   coffeeBagGeneretor: {fileID: 708130008}
 --- !u!1001 &300494540
@@ -6698,6 +6686,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GeneretObjectName: Human
+  timeCounterClass: {fileID: 1404492743}
   roadSystem: {fileID: 1265915259}
   GeneretObjects:
   - {fileID: 1422497083490335869, guid: 7cafd2773a7391d4b9c0029a2a2422b0, type: 3}
@@ -6707,8 +6696,9 @@ MonoBehaviour:
   SpawnRandomPosMax: 16
   SpawnPos_Y: -5
   timeCountValue: 0.02
-  GeneretTime: 2
+  GeneretTime: 1
   timeCounter: 0
+  AddValueRankRimit: 300
 --- !u!114 &1265915261
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6722,6 +6712,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GeneretObjectName: Car
+  timeCounterClass: {fileID: 1404492743}
   roadSystem: {fileID: 1265915259}
   GeneretObjects:
   - {fileID: 1422497083490335869, guid: 0d61ac40e552fab4581349d243275d4f, type: 3}
@@ -6733,6 +6724,7 @@ MonoBehaviour:
   timeCountValue: 0.02
   GeneretTime: 5
   timeCounter: -40
+  AddValueRankRimit: 200
 --- !u!1 &1278061984
 GameObject:
   m_ObjectHideFlags: 0
@@ -10877,6 +10869,7 @@ MonoBehaviour:
   BGM: {fileID: 8300000, guid: 74c83fc56a8060b4dabc31c081a79aa9, type: 3}
   ShutterAnimator: {fileID: 1125944432}
   scoreManager: {fileID: 1221483890}
+  coffeeController: {fileID: 725876122}
   ScoreBoard: {fileID: 555649365}
   GameStartTime: 0
   DecreaseCoffee: 5
@@ -10888,7 +10881,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2074318515}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 25a8fe94f5c81174b96813c5a207ab1c, type: 3}
   m_Name: 

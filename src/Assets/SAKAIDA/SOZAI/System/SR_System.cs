@@ -165,6 +165,10 @@ public class SR_System : MonoBehaviour
             TutorialEventTEXT.Play("降りるリスタート", 0, 0);
             T_Phase++;//T_Phase == 1は待機用
         }
+        if (T_Phase == 1)
+        {
+            Debug.Log("a");
+        }
         if (T_Phase == 2)
         {
             TutorialEventTEXT.Play("上がるリスタート", 0, 0);
@@ -266,6 +270,8 @@ public class SR_System : MonoBehaviour
         coffeeController.CoffeeWater = 100;
         coffeeController.GetCoffeeBeans_namber = 0;
 
+        if (PlayTutorial)
+            TutorialNext();
 
         scoreManager.ResetScore();
         scoreManager.isClearScoreText();
