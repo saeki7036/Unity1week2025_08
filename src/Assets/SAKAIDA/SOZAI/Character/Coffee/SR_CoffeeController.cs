@@ -34,6 +34,8 @@ public class SR_CoffeeController : MonoBehaviour
     public int GetCoffeeBeans_namber=0;
     public float CoffeeWater = 0;
     public float MaxCoffeeWater = 100;
+    [SerializeField] GameObject KEIKOKU;
+    [SerializeField] SR_System system;
 
    
 
@@ -81,6 +83,15 @@ public class SR_CoffeeController : MonoBehaviour
         {
             LeverCount = 0;
             audioManager.isPlaySE(LevarClip);
+        }
+
+        if (CoffeeWater < 20 && system.gameMode == SR_System.GameMode.MainGame)
+        {
+            KEIKOKU.SetActive(true);
+        }
+        else 
+        {
+            KEIKOKU.SetActive(false);
         }
     }
     public void LeverClipPlay() 

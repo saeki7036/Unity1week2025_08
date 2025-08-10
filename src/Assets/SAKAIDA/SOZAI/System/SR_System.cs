@@ -19,6 +19,7 @@ public class SR_System : MonoBehaviour
     [SerializeField] Animator TutorialEventTEXT;
     [SerializeField] Animator KAZARI_animator;
     
+    
     public enum TutorialPhase
     {
 
