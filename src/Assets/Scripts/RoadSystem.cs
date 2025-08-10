@@ -71,7 +71,7 @@ public class RoadSystem : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (system.gameMode == SR_System.GameMode.GameStart) DestroyAll();
+        if (system.gameMode == SR_System.GameMode.Before) DestroyAll();
         if (system.IsMainGamePlay() == false) return;
 
         for (int i = RoadValue.Count - 1; i >= 0; i--)
