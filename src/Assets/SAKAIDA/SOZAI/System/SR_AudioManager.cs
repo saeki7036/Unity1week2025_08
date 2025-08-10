@@ -39,6 +39,17 @@ public class SR_AudioManager : MonoBehaviour
     {
 
     }
+    public void PlayBGM(AudioClip BGMclip) 
+    {
+       
+            BgmSource.clip = BGMclip;
+            BgmSource.Play();
+ 
+    }
+    public void StopBGM() 
+    {
+        BgmSource.Stop();
+    }
     public void isPlaySE(AudioClip Clip)
     {
         /*

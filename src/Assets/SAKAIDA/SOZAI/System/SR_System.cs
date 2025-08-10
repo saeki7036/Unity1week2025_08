@@ -16,6 +16,8 @@ public class SR_System : MonoBehaviour
     float T_Count = 0;
     [SerializeField] bool PlayTutorial = false;
     [SerializeField] Animator TutorialEventTEXT;
+    [SerializeField] Animator KAZARI_animator;
+    
     public enum TutorialPhase
     {
 
@@ -29,6 +31,7 @@ public class SR_System : MonoBehaviour
     [Space]
     [SerializeField] AudioClip NingenKorosu_Clip;
     [SerializeField] AudioClip GameStartClip;
+    [SerializeField] AudioClip BGM;
     
     [SerializeField] Animator ShutterAnimator;
 
@@ -205,9 +208,12 @@ public class SR_System : MonoBehaviour
     }
     void isGameStart() 
     {
-
+        KAZARI_animator.SetBool("GameStart", true);
         audioManager.isPlaySE(GameStartClip);
 
+        audioManager.PlayBGM(BGM);
+
+        scoreManager.ResetScore();
         scoreManager.isClearScoreText();
         ShutterAnimator.Play("開く",0,0);
         gameMode = GameMode.MainGame;
@@ -219,13 +225,18 @@ public class SR_System : MonoBehaviour
 
         StartCoroutine(Shake(0.3f,0.8f));
 
+        scoreManager.ChangeScoreBoard();
+
         scoreManager.SaveScore = scoreManager.AllScore;//スコア情報を念のため保存
         scoreManager.AllScore = 0;//ゲームの合計スコア
         ScoreBoard.SetActive(true);
         
 
         ShutterAnimator.Play("閉じる", 0, 0);
+        KAZARI_animator.SetBool("GameStart", false);
         gameMode = GameMode.Before;
+
+        audioManager.StopBGM();
     }
 
     public void NINGEN_KOROSU() 
