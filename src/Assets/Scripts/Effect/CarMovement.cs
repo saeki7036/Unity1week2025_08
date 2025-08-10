@@ -5,6 +5,9 @@ using UnityEngine;
 public class CarMovement : MonoBehaviour
 {
     [SerializeField]
+    Animator KeyHolderAnimator;
+
+    [SerializeField]
     Transform CarTransform;
 
     [SerializeField]
@@ -22,9 +25,13 @@ public class CarMovement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        float moveValue = handleController.GetMoveValue();
+
+        KeyHolderAnimator.SetFloat("CarSpeed", moveValue);
+
         Vector3 carPos = CarTransform.position;
 
-        float currentMoveSpeed = handleController.GetMoveValue() * VelocityDiameter;
+        float currentMoveSpeed = moveValue * VelocityDiameter;
 
         carPos.x = Mathf.Clamp(carPos.x + currentMoveSpeed, MoveLimitMin, MoveLimitMax);
 
