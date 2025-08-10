@@ -521,6 +521,7 @@ MonoBehaviour:
   BGM: {fileID: 8300000, guid: 74c83fc56a8060b4dabc31c081a79aa9, type: 3}
   ShutterAnimator: {fileID: 145052801}
   scoreManager: {fileID: 81624142}
+  coffeeController: {fileID: 0}
   ScoreBoard: {fileID: 1808574062}
   GameStartTime: 0
   DecreaseCoffee: 5
@@ -1588,8 +1589,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -3563,8 +3564,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
