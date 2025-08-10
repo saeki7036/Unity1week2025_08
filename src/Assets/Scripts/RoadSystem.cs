@@ -19,9 +19,6 @@ public class RoadSystem : MonoBehaviour
     float DownMove = 0.002f;
 
     [SerializeField]
-    float AddScaleValue = 0.01f;
-
-    [SerializeField]
     float Approach_Y = -2f;
 
     [SerializeField]

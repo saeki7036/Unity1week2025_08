@@ -61,12 +61,19 @@ public class HandleController : MonoBehaviour
     {
         InsideInputflag = IsPointInsideHandle(new Vector2(downInput.x, downInput.y));
 
-        //Debug.Log(InsideInputflag);
-
         if (!InsideInputflag)
             return;
 
-        InputUIPos_X = downInput.x;    
+        InputUIPos_X = downInput.x;
+
+        Debug.Log(system.gameMode +" "+ IsPlayStart + " " +  system.gameMode);
+
+        if (IsPlayStart && system.gameMode == GameMode.Before)
+        {
+            Debug.Log(system.gameMode);
+
+            system.gameMode = GameMode.GameStart;
+        }
     }
 
     void MoveValueSetting(Vector3 dragInput)
@@ -74,13 +81,7 @@ public class HandleController : MonoBehaviour
         if (!InsideInputflag)
             return;
 
-        if (millHandle.IsTutoreald() && !IsPlayStart)
-        {
-            system.TutorialNext();
-            system.gameMode = GameMode.GameStart;
-            IsPlayStart = true;
-        }
-            
+        GameModeCheck();
 
         float currentValue = (dragInput.x - InputUIPos_X) / AdjustmentLimit;
 
@@ -99,5 +100,15 @@ public class HandleController : MonoBehaviour
     {
         MoveValue = 0;
         HandleRectTransform.rotation = Quaternion.identity; 
+    }
+
+    void GameModeCheck()
+    {
+        if (millHandle.IsTutoreald() && !IsPlayStart)
+        {
+            system.TutorialNext();
+            system.gameMode = GameMode.GameStart;
+            IsPlayStart = true;
+        }
     }
 }
