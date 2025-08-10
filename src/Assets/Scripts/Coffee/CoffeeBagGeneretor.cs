@@ -44,7 +44,7 @@ public class CoffeeBagGeneretor : MonoBehaviour
     {
         if(AllOpend)
         {
-            if (system.gameMode == SR_System.GameMode.GameStart)
+            if (!system.IsMainGamePlay())
                 DestroyAll();
         }
         else
@@ -103,7 +103,7 @@ public class CoffeeBagGeneretor : MonoBehaviour
         return null;
     }
 
-    private void DestroyAll()
+    void DestroyAll()
     {
         for (int i = 0; i < transform.childCount; i++)
         {
