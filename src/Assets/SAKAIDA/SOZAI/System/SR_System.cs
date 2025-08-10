@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using unityroom.Api;
 
 public class SR_System : MonoBehaviour
 {
@@ -43,6 +44,11 @@ public class SR_System : MonoBehaviour
     [SerializeField] SR_CoffeeController coffeeController;
     [SerializeField] GameObject ScoreBoard;
     [SerializeField] float GameStartTime = 0;
+
+    //trueに設定するとUnityRoomのランキング機能を利用
+    [SerializeField]
+    bool sendScoreFlag = false;
+
     float GameStartCount = 0;
 
     public float DecreaseCoffee = 1;//一秒の減少量
@@ -291,6 +297,10 @@ public class SR_System : MonoBehaviour
         //scoreManager.ChangeScoreBoard();
 
         scoreManager.SaveScore = scoreManager.AllScore;//スコア情報を念のため保存
+
+        if(sendScoreFlag)
+            UnityroomApiClient.Instance.SendScore(1, (int)scoreManager.SaveScore, ScoreboardWriteMode.HighScoreDesc);
+
         scoreManager.AllScore = 0;//ゲームの合計スコア
         ScoreBoard.SetActive(true);
         
