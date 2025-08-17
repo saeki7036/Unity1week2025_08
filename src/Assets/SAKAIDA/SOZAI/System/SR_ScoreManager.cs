@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using unityroom.Api;
+using UnityEngine.SceneManagement;
 
 public class SR_ScoreManager : MonoBehaviour
 {
@@ -28,6 +30,9 @@ public class SR_ScoreManager : MonoBehaviour
     [SerializeField] float LeverBonus_Limit = 3;
     [SerializeField] float LeverBonus_Count = 0;
 
+    //trueに設定するとUnityRoomのランキング機能を利用
+    [SerializeField]
+    bool sendScoreFlag = false;
 
     public float Length_point =0;
 
@@ -93,15 +98,15 @@ public class SR_ScoreManager : MonoBehaviour
         sR_LeverDouble.DoubleText.text = (1 + Count_Double_AddScore_CiffeeLever).ToString("F1");
         sR_LeverDouble.GetScore.text = (AddScore_CiffeeLever * (1 + Count_Double_AddScore_CiffeeLever)).ToString("F0");
 
+        if (sendScoreFlag)
+            UnityroomApiClient.Instance.SendScore(2, 1f + Count_Double_AddScore_CiffeeLever, ScoreboardWriteMode.HighScoreDesc);
+
         LeverPoint += AddScore_CiffeeLever * (1 + Count_Double_AddScore_CiffeeLever);
         isAddScore((AddScore_CiffeeLever * (1 + Count_Double_AddScore_CiffeeLever)));
 
         Count_Double_AddScore_CiffeeLever += Double_AddScore_CiffeeLever;
 
-
-        LeverBonus_Count = 0;
-
-        
+        LeverBonus_Count = 0;   
     }
 
     public void isAddScore(float AddScore) 

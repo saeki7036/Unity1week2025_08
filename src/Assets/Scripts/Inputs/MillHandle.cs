@@ -122,10 +122,13 @@ public class MillHandle : MonoBehaviour
                     OneRotateEvent.Invoke();
                     Debug.Log("1Rotate");
 
-                    if (Tutoreald && coffeeBagGeneretor.IsAllOpend())
+                    if (Tutoreald && coffeeBagGeneretor != null)
                     {
-                        Tutoreald = false;
-                        system.TutorialNext();
+                        if(coffeeBagGeneretor.IsAllOpend())
+                        {
+                            Tutoreald = false;
+                            system.TutorialNext();
+                        }
                     }
                         
                 }

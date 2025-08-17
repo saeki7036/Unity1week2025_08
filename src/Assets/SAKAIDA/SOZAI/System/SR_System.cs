@@ -210,7 +210,7 @@ public class SR_System : MonoBehaviour
         if (T_Phase == 3)
         {
             T_Count += Time.deltaTime;
-            if (T_Count > 0.5)
+            if (T_Count > 0.021)
             {
                 T_Phase = 0;
                 T_Count = 0;
@@ -235,7 +235,7 @@ public class SR_System : MonoBehaviour
         if (T_Phase == 3)
         {
             T_Count += Time.deltaTime;
-            if (T_Count > 0.5)
+            if (T_Count > 0.021)
             {
                 T_Phase = 0;
                 T_Count = 0;
@@ -259,7 +259,7 @@ public class SR_System : MonoBehaviour
         if (T_Phase == 3)
         {
             T_Count += Time.deltaTime;
-            if (T_Count > 0.5)
+            if (T_Count > 0.1)
             {
                 T_Phase = 0;
                 T_Count = 0;
