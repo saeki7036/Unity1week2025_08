@@ -6710,6 +6710,7 @@ MonoBehaviour:
   Count_Double_AddScore_CiffeeLever: 0
   LeverBonus_Limit: 3
   LeverBonus_Count: 0
+  sendScoreFlag: 1
   Length_point: 0
   AllScore: 0
   SaveScore: 0
